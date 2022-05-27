@@ -6,3 +6,6 @@ class IsOwnerProfileOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         return obj.username == request.user.username
+
+
+
