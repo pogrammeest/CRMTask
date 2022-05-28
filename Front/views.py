@@ -1,42 +1,78 @@
+import logging
+
 import requests.cookies
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse
 from django.urls import reverse
 from rest_framework.response import Response
 from rest_framework import status
-from .forms import LoginForm
+from .forms import LoginForm, RegForm
+import jwt
+from CRMForTestTask.settings import SECRET_KEY
+from APIService.models import User
+
+global logger
+logger = logging.getLogger(__name__)  # for logging in DJDT
 
 
 def landing(request):
-    return render(request, 'Front/index-5.html', context={})
+    token = request.COOKIES.get('token')
+    try:
+        user_data = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        user = User.objects.get(id=user_data['user_id'])
+    except jwt.exceptions.PyJWTError:
+        user = None
+
+    # logger.debug(user.username)
+
+    return render(request, 'Front/base.html', context={'user': user})
+
+
+def logout(request):
+    response = HttpResponseRedirect('/')
+    response.delete_cookie('token')
+    return response
 
 
 def login(request):
-    # if this is a POST request we need to process the form data
+    alert = None
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
         form = LoginForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
-
             url = request.build_absolute_uri(reverse('jwt-create'))
-
             data = form.cleaned_data
-
             r = requests.post(url, data=data)
-            response = HttpResponseRedirect('/')
+            alert = r.json()
+            alert['status'] = str(r.status_code)
+            alert['message'] = "Вы вошли!" if r.status_code == status.HTTP_200_OK else f"{''.join(list(alert.values())[0])}"
+            response = render(request, 'Front/login.html', context={'form': form, 'alert': alert})
             try:
                 r = r.json()
                 response.set_cookie('token', r['access'], httponly=True)
             except KeyError:
                 response.set_cookie('token', '', httponly=True)
             return response
-
-    # if a GET (or any other method) we'll create a blank form
     else:
         form = LoginForm()
+    return render(request, 'Front/login.html', context={'form': form, 'alert': alert})
 
-    return render(request, 'Front/login.html', context={'form': form})
+
+def registration(request):
+    alert = None
+
+    if request.method == 'POST':
+        form = RegForm(request.POST)
+        if form.is_valid():
+            url = request.build_absolute_uri('/auth/users/')
+            data = form.cleaned_data
+            r = requests.post(url, data=data)
+            alert = r.json()
+            alert['status'] = str(r.status_code)
+            alert['message'] = "Вы успешно зарегистрированы!" if r.status_code == status.HTTP_201_CREATED else f"{''.join(list(alert.values())[0])}"
+    else:
+        form = RegForm()
+
+    return render(request, 'Front/register.html', context={'form': form, 'alert': alert})
 
 
 def own_list(request):
@@ -45,6 +81,6 @@ def own_list(request):
     data = {'token': token}
     response = requests.post(url, data=data)
     if not response.json():
-        return render(request, 'Front/index-5.html', context={})
+        return render(request, 'Front/blog-grid.html', context={})
     else:
         return HttpResponse('FORBIDDEN')

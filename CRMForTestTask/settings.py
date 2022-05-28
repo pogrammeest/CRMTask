@@ -32,7 +32,9 @@ INSTALLED_APPS = [
     'rest_framework',  # rest API implementation library for django
     'djoser',  # third party package for user registration and authentication endpoints
     'rest_framework_simplejwt',  # JWT authentication backend library
-    'APIService'
+    'widget_tweaks',  # for custom django forms style
+    'APIService',
+    'Front',
 ]
 
 MIDDLEWARE = [
@@ -153,4 +155,13 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
 
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'incremental': True,
+    'root': {
+        'level': 'DEBUG',
+    },
 }

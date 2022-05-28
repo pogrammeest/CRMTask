@@ -1,0 +1,265 @@
+{% load static %}
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Multipurpose Saas Startup HTML Template">
+    <meta name="author" content="DynamicLayers">
+
+    <title>Saasbiz | Multipurpose Saas Startup HTML Template</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png'%}">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <!-- Themify Icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <!-- Elegant Line Icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegant-line-icons.css' %}">
+    <!-- Elegant Icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegant-font-icons.css' %}">
+    <!-- Saasbiz Icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/saasbiz-icons.css' %}">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Slicknav CSS -->
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+    <!-- Pricing CSS -->
+    <link rel="stylesheet" href="{% static 'css/pricing-table.css' %}">
+    <!-- Odometer CSS -->
+    <link rel="stylesheet" href="{% static 'css/odometer.min.css' %}">
+    <!-- Venobox CSS -->
+    <link rel="stylesheet" href="{% static 'css/venobox/venobox.css' %}">
+    <!-- OWL-Carousel CSS -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+</head>
+<body data-spy="scroll" data-target="#navmenu" data-offset="70">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="site-preloader-wrap">
+    <div class="spinner"></div>
+</div><!-- Preloader -->
+
+{% block header %}
+    <header id="header" class="header-section transparent">
+        <div class="container">
+            <nav class="navbar ">
+                <a href="{% url 'home-page' %}" class="navbar-brand">
+                    <img class="logo-light" src="{% static 'img/logo-light.png' %}" alt="Saasbiz">
+                    <img class="logo-dark" src="{% static 'img/logo-dark.png' %}" alt="Saasbiz">
+                </a>
+                <div class="d-flex menu-wrap">
+                    <div id="mainmenu" class="mainmenu">
+                        <ul class="nav">
+                            {% if user %}
+                                <li><a data-scroll class="nav-link active" href="{% url 'my-request' %}">Мои заявки</a>
+
+                                </li>
+
+                                <li><a href="#">User: {{ user.username }}</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                            {% else %}
+
+                                <li><a href="#">Login/Register</a>
+                                    <ul>
+                                        <li><a href="{% url 'login' %}">Login</a></li>
+                                        <li><a href="{% url 'registration' %}">Register</a></li>
+
+                                    </ul>
+                                </li>
+
+                            {% endif %}
+
+
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header> <!--.header-section -->
+{% endblock %}
+{% block content %}
+
+    <section class="hero-section hero-5 bd-bottom d-flex align-items-center pos-rel">
+        <div class="anim-elements">
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+        </div>
+        <div class="container">
+            <div class="row hero-wrap d-flex align-items-center">
+                <div class="col-lg-6 sm-padding">
+                    <div class="hero-content">
+                        <h1>Лучший API сервес для починки авто!</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam atque
+                            blanditiis
+                            dolor eligendi error est exercitationem facilis fuga harum, ipsum labore laborum mollitia
+                            nihil
+                        </p>
+                        <a href="#" class="default-btn btn-pink">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 sm-padding">
+                    <div class="hero-img-wrap">
+                        <img src=" {% static 'img/hero-2.png' %}" alt="hero">
+                        <img class="h-icon h-icon-1" src="{% static 'img/hero-icon-1.png' %}" alt="hero">
+                        <img class="h-icon h-icon-2" src="{% static 'img/hero-icon-2.png' %}" alt="hero">
+                        <img class="h-icon h-icon-3" src="{% static 'img/hero-icon-3.png' %}" alt="hero">
+                        <img class="h-icon h-icon-4" src="{% static 'img/hero-icon-4.png' %}" alt="hero">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/.hero-section-->
+
+
+    <section class="testimonial-section padding">
+        <div class="map-pattern"></div>
+        <div class="container">
+            <div class="section-heading mb-40 text-center wow fadeInUp" data-wow-delay="300ms">
+                <span>Explore The Features</span>
+                <h2>Сотни довольных клиентов <br> по всему миру!</h2>
+            </div>
+            <div class="row testi-wrap">
+                <div id="testimonial-carousel-2" class="testimonial-carosel-2 owl-carousel">
+                    <div class="testi-item">
+                        <p>"Thank you for guiding us through the construction process, understanding, and always ready
+                            to
+                            accommodate our landing needs."</p>
+                        <div class="testi-item-inner">
+                            <div class="testi-thumb">
+                                <img src=" {% static 'img/testi-1.jpg' %}" alt="testimonial">
+                            </div>
+                            <div class="testi-info">
+                                <h3>José Carpio<span>Developer</span></h3>
+                            </div>
+                            <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="testi-item">
+                        <p>"Thank you for guiding us through the construction process, understanding, and always ready
+                            to
+                            accommodate our landing needs."</p>
+                        <div class="testi-item-inner">
+                            <div class="testi-thumb">
+                                <img src=" {% static 'img/testi-2.jpg' %}" alt="testimonial">
+                            </div>
+                            <div class="testi-info">
+                                <h3>Kyle Frederick<span>Designer</span></h3>
+                            </div>
+                            <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="testi-item">
+                        <p>"Thank you for guiding us through the construction process, understanding, and always ready
+                            to
+                            accommodate our landing needs."</p>
+                        <div class="testi-item-inner">
+                            <div class="testi-thumb">
+                                <img src=" {% static 'img/testi-3.jpg' %}" alt="testimonial">
+                            </div>
+                            <div class="testi-info">
+                                <h3>Melania Rose<span>Marketer</span></h3>
+                            </div>
+                            <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="testi-item">
+                        <p>"Thank you for guiding us through the construction process, understanding, and always ready
+                            to
+                            accommodate our landing needs."</p>
+                        <div class="testi-item-inner">
+                            <div class="testi-thumb">
+                                <img src=" {% static 'img/testi-4.jpg' %}" alt="testimonial">
+                            </div>
+                            <div class="testi-info">
+                                <h3>Michel Brown<span>Designer</span></h3>
+                            </div>
+                            <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/.testimonial-section-->
+
+    <section class="cta-section cta-3">
+        <div class="anim-elements">
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+            <div class="anim-element"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content section-heading text-center">
+                <span>Получите помощь с расширенной поддержкой!</span>
+                <h2>Мы здесь, чтобы помочь вам! <br>Не можете найти то, что ищете?</h2>
+                <p>We provide marketing services to startups and small businesses to <br>looking for a partner of their
+                    digital media.</p>
+                <a href="#" class="default-btn btn-pink">Request A Quote</a>
+            </div>
+        </div>
+    </section><!--/.cta-section-->
+{% endblock %}
+
+<a data-scroll href="#header" id="scroll-to-top"><i class="arrow_carrot-up"></i></a>
+
+<!-- jQuery Lib -->
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+<!-- Tether JS -->
+<script src="{% static 'js/vendor/tether.min.js' %}"></script>
+<!-- Slicknav JS -->
+<script src="{% static 'js/vendor/jquery.slicknav.min.js' %}"></script>
+<!-- OWL-Carousel JS -->
+<script src="{% static 'js/vendor/owl.carousel.min.js' %}"></script>
+<!-- Smooth Scroll JS -->
+<script src="{% static 'js/vendor/smooth-scroll.min.js' %}"></script>
+<!-- Venobox JS -->
+<script src="{% static 'js/vendor/venobox.min.js' %}"></script>
+<!-- Ajaxchimp JS -->
+<script src="{% static 'js/vendor/jquery.ajaxchimp.min.js' %}"></script>
+<!--YTPlayer Js-->
+<script src="{% static 'js/vendor/jquery.mb.YTPlayer.min.js' %}"></script>
+<!-- Nice Select JS -->
+<script src="{% static 'js/vendor/jquery.nice-select.min.js' %}"></script>
+<!-- Pricing Switcher JS -->
+<script src="{% static 'js/vendor/pricing-switcher.js' %}"></script>
+<!-- Waypoints JS -->
+<script src="{% static 'js/vendor/waypoints.min.js' %}"></script>
+<!-- Odometer JS -->
+<script src="{% static 'js/vendor/odometer.min.js' %}"></script>
+<!-- Wow JS -->
+<script src="{% static 'js/vendor/wow.min.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
