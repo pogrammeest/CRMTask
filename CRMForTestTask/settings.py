@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'debug_toolbar',  # for debug
     'django_extensions',  # for debug
     'rest_framework',  # rest API implementation library for django

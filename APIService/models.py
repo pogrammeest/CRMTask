@@ -6,9 +6,9 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 statuses = [
-    ('От', 'Открыта'),
-    ('В ра', 'В работе '),
-    ('За', 'Закрыта'),
+    ('Открыта', 'Открыта'),
+    ('В работе', 'В работе'),
+    ('Закрыта', 'Закрыта'),
 ]
 
 
