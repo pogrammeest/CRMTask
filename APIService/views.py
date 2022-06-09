@@ -10,13 +10,13 @@ from rest_framework.views import APIView
 from .models import UserDetails, Staff, RepairRequest
 from .serializers import UserDetailSerializer, StaffSerializer, RepairRequestSerializer
 from django.urls import reverse
-from APIService.permissions import IsOwnerProfileOrReadOnly
+from APIService.permissions import IsOwnerProfileOrReadOnly, IsOwnerOrAdmin
 
 
 class RepairRequestViewSet(viewsets.ModelViewSet):
     queryset = RepairRequest.objects.all()
     serializer_class = RepairRequestSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrAdmin]
 
     def perform_create(self, serializer):
         serializer.save(owner=UserDetails.objects.get(user=self.request.user))
@@ -37,7 +37,7 @@ class StaffViewSet(viewsets.ModelViewSet):
     """
     queryset = Staff.objects.all()
     serializer_class = StaffSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsOwnerOrAdmin]
 
 
 class LoginView(APIView):
@@ -55,8 +55,6 @@ class LoginView(APIView):
         r = r.json()
 
         response = Response(r)
-
-
         response.set_cookie('token', r['access'], httponly=True)
 
         return response

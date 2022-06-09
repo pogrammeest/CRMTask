@@ -9,5 +9,7 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('reg/', registration, name='registration'),
     path('logout/', logout, name='logout'),
-    path('my-request/', own_list, name='my-request')
+    path('my-request/', own_list, name='my-request'),
+    path('request/<int:pk>/', request_detail, name='request-detail'),
+    path('request-change/<int:pk>/', RequestDetailView.as_view(), name='request-change')
 ]

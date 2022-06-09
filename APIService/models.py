@@ -57,7 +57,7 @@ class RepairRequest(models.Model):
     owner = models.ForeignKey('UserDetails', related_name='repair_request', on_delete=models.CASCADE, null=True,
                               blank=False)
     responsible = models.ForeignKey('Staff', related_name='repair_tasks', on_delete=models.CASCADE, null=True, blank=True)
-    status = models.CharField(choices=statuses, default='открыта', max_length=100)
+    status = models.CharField(choices=statuses, default='Открыта', max_length=100)
 
     class Meta:
         ordering = ['created']

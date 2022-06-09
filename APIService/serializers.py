@@ -36,4 +36,4 @@ class StaffSerializer(LinkUserBaseSerializerMixin):
 class RepairRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepairRequest
-        fields = ['created', 'title', 'description', 'owner', 'responsible', 'status']
+        fields = ['id', 'created', 'title', 'description', 'owner', 'responsible', 'status']
